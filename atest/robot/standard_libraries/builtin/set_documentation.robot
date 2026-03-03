@@ -42,3 +42,34 @@ Set top level suite documentation
     ${tc} =    Check Test Case    ${TESTNAME}
     Check Log Message    ${tc[0, 0]}    Set suite documentation to:\nInit file doc. Concatenated in setup. Appended in test.
 
+Set HTML test documentation
+    ${tc} =    Check Test Doc    ${TESTNAME}     *HTML* My <b>HTML</b> test doc
+    Check Log Message    ${tc[0, 0]}    Set test documentation to:\n*HTML* My <b>HTML</b> test doc
+
+Append HTML to non-HTML test documentation
+    ${tc} =    Check Test Doc    ${TESTNAME}     *HTML* Original non-HTML doc with <b>HTML</b> continuation
+    Check Log Message    ${tc[0, 0]}    Set test documentation to:\n*HTML* Original non-HTML doc with <b>HTML</b> continuation
+
+Append non-HTML to HTML test documentation
+    ${tc} =    Check Test Doc    ${TESTNAME}     *HTML* Original <b>HTML</b> doc with non-HTML &lt;continuation&gt;
+    Check Log Message    ${tc[0, 0]}    Set test documentation to:\n*HTML* Original <b>HTML</b> doc with non-HTML &lt;continuation&gt;
+
+Append HTML to HTML test documentation
+    ${tc} =    Check Test Doc    ${TESTNAME}     *HTML* Original <b>HTML</b> doc with <i>more</i> HTML
+    Check Log Message    ${tc[0, 0]}    Set test documentation to:\n*HTML* Original <b>HTML</b> doc with <i>more</i> HTML
+
+Set HTML suite documentation
+    ${tc} =    Check Test Case    ${TESTNAME}
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc
+
+Append HTML to non-HTML suite documentation
+    ${tc} =    Check Test Case    ${TESTNAME}
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation
+
+Append non-HTML to HTML suite documentation
+    ${tc} =    Check Test Case    ${TESTNAME}
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt;
+
+Append HTML to HTML suite documentation
+    ${tc} =    Check Test Case    ${TESTNAME}
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt; with <i>more</i> HTML
