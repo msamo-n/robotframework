@@ -4106,6 +4106,9 @@ class _Misc(_BuiltInBase):
         this can be changed using the optional ``append`` argument similarly
         as with `Set Test Message` keyword.
 
+        It is possible to use HTML format in the message by starting the message
+        with ``*HTML*`` similarly as with `Set Test Message` keyword.
+
         An optional ``separator`` argument can be used to provide custom separator
         string when appending to the old text. A single space is used as separator
         by default.
@@ -4138,6 +4141,9 @@ class _Misc(_BuiltInBase):
         By default, the possible existing documentation is overwritten, but
         this can be changed using the optional ``append`` argument similarly
         as with `Set Test Message` keyword.
+
+        It is possible to use HTML format in the message by starting the message
+        with ``*HTML*`` similarly as with `Set Test Message` keyword.
 
         This keyword sets the documentation of the current suite by default.
         If the optional ``top`` argument is given a true value, the documentation
