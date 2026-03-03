@@ -4122,7 +4122,7 @@ class _Misc(_BuiltInBase):
                 "'Set Test Documentation' keyword cannot be used in "
                 "suite setup or teardown."
             )
-        test.doc = self._get_new_text(test.doc, doc, append, separator=separator)
+        test.doc = self._get_new_text(test.doc, doc, append, handle_html=True, separator=separator)
         self._variables.set_test("${TEST_DOCUMENTATION}", test.doc)
         logger.info(f"Set test documentation to:\n{test.doc}")
 
@@ -4153,7 +4153,7 @@ class _Misc(_BuiltInBase):
         The ``separator`` argument is new in Robot Framework 7.2.
         """
         suite = self._get_context(top).suite
-        suite.doc = self._get_new_text(suite.doc, doc, append, separator=separator)
+        suite.doc = self._get_new_text(suite.doc, doc, append, handle_html=True, separator=separator)
         self._variables.set_suite("${SUITE_DOCUMENTATION}", suite.doc, top)
         logger.info(f"Set suite documentation to:\n{suite.doc}")
 
