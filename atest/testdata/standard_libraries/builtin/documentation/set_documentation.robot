@@ -68,17 +68,17 @@ Append HTML to HTML test documentation
    Should be equal        ${TEST DOCUMENTATION}      *HTML* Original <b>HTML</b> doc with <i>more</i> HTML
 
 Set HTML suite documentation
-   Set suite documentation      *HTML* My <b>HTML</b> suite doc
-   Should be equal        ${SUITE DOCUMENTATION}      *HTML* My <b>HTML</b> suite doc
+   Set suite documentation      *HTML* Suite with <b>HTML</b> doc
+   Should be equal        ${SUITE DOCUMENTATION}      *HTML* Suite with <b>HTML</b> doc
 
-Append HTML to non-HTML suite documentation
-   Set suite documentation      with <b>HTML</b> continuation    append=yes
-   Should be equal        ${SUITE DOCUMENTATION}      *HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation
-
-Append non-HTML to HTML suite documentation
-   Set suite documentation      with non-HTML <continuation>    append=yes
-   Should be equal        ${SUITE DOCUMENTATION}      *HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt;
+Set HTML suite documentation 2
+   Set suite documentation      *HTML* Another <i>HTML</i> doc
+   Should be equal        ${SUITE DOCUMENTATION}      *HTML* Another <i>HTML</i> doc
 
 Append HTML to HTML suite documentation
-   Set suite documentation      *HTML* with <i>more</i> HTML    append=yes
-   Should be equal        ${SUITE DOCUMENTATION}      *HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt; with <i>more</i> HTML
+   Set suite documentation      *HTML* with <b>more</b>    append=yes
+   Should be equal        ${SUITE DOCUMENTATION}      *HTML* Another <i>HTML</i> doc with <b>more</b>
+
+Append non-HTML to HTML suite documentation
+   Set suite documentation      and non-HTML <text>    append=yes
+   Should be equal        ${SUITE DOCUMENTATION}      *HTML* Another <i>HTML</i> doc with <b>more</b> and non-HTML &lt;text&gt;

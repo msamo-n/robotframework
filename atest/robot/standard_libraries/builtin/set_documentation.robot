@@ -23,7 +23,7 @@ Set suite documentation
     ${tc} =    Check Test Case    ${TESTNAME}
     Check Log Message    ${tc[0, 0]}    Set suite documentation to:\nNew suite doc
     Check Test Case    ${TESTNAME} 2
-    Should Start With    ${SUITE.suites[0].doc}    New suite doc
+    # Suite doc is later replaced by HTML tests, so we don't check final value here
 
 Append to suite documentation
     ${tc} =    Check Test Case    ${TESTNAME}
@@ -32,7 +32,7 @@ Append to suite documentation
     Check Log Message    ${tc[1, 0]}    Set suite documentation to:\nNew suite doc is continued \n\ntwice!
     Check Log Message    ${tc[3, 0]}    Set suite documentation to:\nNew suite doc is continued \n\ntwice!,thrice
     Check Log Message    ${tc[5, 0]}    Set suite documentation to:\nNew suite doc is continued \n\ntwice!,thrice?1
-    Should Be Equal    ${SUITE.suites[0].doc}    New suite doc is continued \n\ntwice!,thrice?1
+    # Final suite doc is set by HTML tests later
 
 Set init file suite docs
     Should Be Equal     ${SUITE.doc}    Init file doc. Concatenated in setup. Appended in test.
@@ -60,16 +60,18 @@ Append HTML to HTML test documentation
 
 Set HTML suite documentation
     ${tc} =    Check Test Case    ${TESTNAME}
-    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* Suite with <b>HTML</b> doc
 
-Append HTML to non-HTML suite documentation
+Set HTML suite documentation 2
     ${tc} =    Check Test Case    ${TESTNAME}
-    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation
-
-Append non-HTML to HTML suite documentation
-    ${tc} =    Check Test Case    ${TESTNAME}
-    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt;
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* Another <i>HTML</i> doc
 
 Append HTML to HTML suite documentation
     ${tc} =    Check Test Case    ${TESTNAME}
-    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* My <b>HTML</b> suite doc with <b>HTML</b> continuation with non-HTML &lt;continuation&gt; with <i>more</i> HTML
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* Another <i>HTML</i> doc with <b>more</b>
+
+Append non-HTML to HTML suite documentation
+    ${tc} =    Check Test Case    ${TESTNAME}
+    Check Log Message    ${tc[0, 0]}    Set suite documentation to:\n*HTML* Another <i>HTML</i> doc with <b>more</b> and non-HTML &lt;text&gt;
+    # Final suite doc check
+    Should Be Equal    ${SUITE.suites[0].doc}    *HTML* Another <i>HTML</i> doc with <b>more</b> and non-HTML &lt;text&gt;
